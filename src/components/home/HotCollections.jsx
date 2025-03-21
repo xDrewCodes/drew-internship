@@ -61,7 +61,26 @@ const HotCollections = () => {
           </div>
 
           {!collections || collections.length === 0 ? (
-            <div>Skeleton Loading State</div>
+            <Slider {...collSettings}>
+            {
+            new Array(4).fill(0).map((_, index) => (
+              <div className="skelly-container" key={index}>
+                <div className="nft_coll skelly-container">
+                  <div className="nft_wrap skelly-container">
+                      <div className="skelly skelly-fill"></div>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <div className="skelly-pp"></div>
+                  <i className="fa fa-check"></i>
+                  </div>
+                  <div className="nft_coll_info skelly-container">
+                      <h4 className="skelly">Author Name</h4>
+                    <h6 className="skelly">ERC-121</h6>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </Slider>
           ) : (
             <Slider {...collSettings}>
               {collections.map((collection) => (
