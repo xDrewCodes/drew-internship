@@ -12706,7 +12706,7 @@ a.read_more i {
 
 .switch {
   margin-bottom: -5px;
-  -webkit-appearance: none;
+  --webkit-appearance: none;
   height: 24px;
   width: 44px;
   background-color: #eeeeee;
@@ -13180,6 +13180,8 @@ a.read_more i {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   margin-bottom: 10px;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .nft_coll.style-2 {
@@ -13201,6 +13203,55 @@ a.read_more i {
 .text-light .nft_coll {
   background: rgba(255, 255, 255, 0.04);
   border: solid 1px rgba(255, 255, 255, 0.1);
+}
+
+.slick-prev, .slick-next {
+  opacity: 1 !important;
+  display: block !important;
+  visibility: visible !important;
+  z-index: 9999 !important;
+  font-size: 30px;
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.7);
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.slick-prev {
+  left: 0px !important;
+}
+
+.slick-next {
+  right: 0px !important;
+}
+
+.slick-next, .slick-prev {
+  background-color: white !important;
+  border: 1px #ddd solid !important;
+  height: 40px !important;
+  width: 40px !important;
+  transform: translateY(-25px) !important;
+}
+
+.slick-prev:before, .slick-next:before {
+  font-family: 'Font Awesome 5 Free' !important;
+  font-weight: 900;
+  color: black !important;
+}
+
+.slick-prev:before {
+  content: '\f104' !important;
+}
+
+.slick-next:before {
+  content: '\f105' !important;
 }
 
 .nft_wrap {
@@ -15145,7 +15196,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
@@ -16648,6 +16699,53 @@ img {
     left: 0;
     top: -21px;
   }
+}
+
+.skelly-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.skelly {
+  color: #FFFFFF00;
+  background-color: #DDD;
+  width: fit-content;
+  align-self: center;
+}
+
+h4.skelly, h6.skelly {
+  margin: 2px;
+}
+
+.skelly::after {
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0,
+    rgba(255, 255, 255, 0.2) 20%,
+    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0)
+  );
+  -webkit-animation: shimmer 2s infinite;
+  animation: shimmer 2s infinite;
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+}
+
+.skelly-fill {
+  width: 100%;
+  height: 100%;
+}
+
+.skelly-pp {
+  background-color: white;
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
 }
 
 .skeleton-box {
