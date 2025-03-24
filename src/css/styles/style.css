@@ -16716,14 +16716,19 @@ img {
 }
 
 .skelly {
-  color: #FFFFFF00;
-  background-color: #DDD;
+  color: #FFFFFF00 !important;
+  background-color: #DDD !important;
   width: fit-content;
   align-self: center;
 }
 
 h4.skelly, h6.skelly {
   margin: 2px;
+}
+
+.skelly-item {
+  border-radius: 8px;
+  height: 300px !important;
 }
 
 .skelly::after {

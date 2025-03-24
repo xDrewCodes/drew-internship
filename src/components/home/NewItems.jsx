@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 import axios from 'axios'
@@ -5,7 +6,7 @@ import Slider from "react-slick"
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([])
-  const [currentTime, setCurrentTime] = useState(Date.now())  // Store current time
+  const [currentTime, setCurrentTime] = useState(Date.now())
   const [expireTimes, setExpireTimes] = useState({})
 
   const sliderSettings = {
@@ -41,9 +42,7 @@ const NewItems = () => {
     let url = 'https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems'
     let response = await axios.get(url)
     setNewItems(response.data)
-    console.log(response.data)
 
-    // Set the expire times in a separate state
     let initialExpireTimes = {}
     response.data.forEach(item => {
       initialExpireTimes[item.id] = item.expiryDate
@@ -89,33 +88,18 @@ const NewItems = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          { !newItems || newItems.length === 0 ? (
-            'loading...'
-          ) : (
-          
+          {!newItems || newItems.length === 0 ? (
             <Slider {...sliderSettings}>
               {
-                newItems.map(newItem => (
-                  <div className="" key={newItem.id}>
+                new Array(4).fill(0).map((_, index) => (
+                  <div className="" key={index}>
                     <div className="nft__item">
                       <div className="author_list_pp">
-                        <Link
-                          to={`/author/${newItem.authorId}`}
-                          data-bs-toggle="tooltip"
-                          data-bs-placement="top"
-                          title={`Creator: ${newItem.authorId}`}
-                        >
-                          <img className="lazy" src={newItem.authorImage} alt="" />
+                        <div>
+                          <div className="lazy skelly-pp" src="" alt="" />
                           <i className="fa fa-check"></i>
-                        </Link>
-                      </div>
-      
-                      {newItem.expiryDate && (
-                        <div className="de_countdown">
-                          {calcTime(expireTimes[newItem.id] || newItem.expiryDate)}
                         </div>
-                      )}
-      
+                      </div>
                       <div className="nft__item_wrap">
                         <div className="nft__item_extra">
                           <div className="nft__item_buttons">
@@ -134,7 +118,64 @@ const NewItems = () => {
                             </div>
                           </div>
                         </div>
-      
+                        <div className="lazy nft__item_preview skelly-fill skelly skelly-item" />
+                      </div>
+                      <div className="nft__item_info">
+                        <h4 className="skelly">author author</h4>
+                        <h4 className="nft__item_price skelly">price</h4>
+                        <div className="nft__item_like">
+                          <span className="skelly">likes</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))
+              }
+            </Slider>
+          ) : (
+
+            <Slider {...sliderSettings}>
+              {
+                newItems.map(newItem => (
+                  <div className="" key={newItem.id}>
+                    <div className="nft__item">
+                      <div className="author_list_pp">
+                        <Link
+                          to={`/author/${newItem.authorId}`}
+                          data-bs-toggle="tooltip"
+                          data-bs-placement="top"
+                          title={`Creator: ${newItem.authorId}`}
+                        >
+                          <img className="lazy" src={newItem.authorImage} alt="" />
+                          <i className="fa fa-check"></i>
+                        </Link>
+                      </div>
+
+                      {newItem.expiryDate && (
+                        <div className="de_countdown">
+                          {calcTime(expireTimes[newItem.id] || newItem.expiryDate)}
+                        </div>
+                      )}
+
+                      <div className="nft__item_wrap">
+                        <div className="nft__item_extra">
+                          <div className="nft__item_buttons">
+                            <button>Buy Now</button>
+                            <div className="nft__item_share">
+                              <h4>Share</h4>
+                              <a href="" target="_blank" rel="noreferrer">
+                                <i className="fa fa-facebook fa-lg"></i>
+                              </a>
+                              <a href="" target="_blank" rel="noreferrer">
+                                <i className="fa fa-twitter fa-lg"></i>
+                              </a>
+                              <a href="">
+                                <i className="fa fa-envelope fa-lg"></i>
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+
                         <Link to="/item-details">
                           <img
                             src={newItem.nftImage}
@@ -160,7 +201,7 @@ const NewItems = () => {
             </Slider>
 
           )
-        }
+          }
         </div>
       </div>
     </section>
