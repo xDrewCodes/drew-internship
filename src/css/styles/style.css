@@ -13680,6 +13680,8 @@ a.read_more i {
   -webkit-border-radius: 15px;
   margin-bottom: 25px;
   background: #ffffff;
+  width: calc( 100% - 8px );
+  margin-left: 4px;
 }
 
 .nft__item.style-2,
@@ -13706,6 +13708,10 @@ a.read_more i {
   -webkit-box-shadow: 2px 2px 30px 0px rgba(20, 20, 20, 0.1);
   -moz-box-shadow: 2px 2px 30px 0px rgba(20, 20, 20, 0.1);
   box-shadow: 2px 2px 30px 0px rgba(20, 20, 20, 0.1);
+}
+
+.nft__item_preview {
+  width: 100%;
 }
 
 .nft__item:hover img.nft__item_preview {
@@ -16710,14 +16716,19 @@ img {
 }
 
 .skelly {
-  color: #FFFFFF00;
-  background-color: #DDD;
+  color: #FFFFFF00 !important;
+  background-color: #DDD !important;
   width: fit-content;
   align-self: center;
 }
 
 h4.skelly, h6.skelly {
   margin: 2px;
+}
+
+.skelly-item {
+  border-radius: 8px;
+  height: 300px !important;
 }
 
 .skelly::after {
