@@ -32,7 +32,20 @@ const TopSellers = () => {
           </div>
           <div className="col-md-12">
             <ol className="author_list">
-              {topSellers &&
+              {
+              !topSellers
+              ?
+              new Array(12).fill(0).map((_, index) => (
+                <li key={index}>
+                  <div className="author_list_pp">
+                      <div className="skelly-pp skelly"></div>
+                      <i className="fa fa-check"></i>
+                  </div>
+                  <h6 className="author_list_info skelly" style={{padding: '0px', marginLeft: '78px'}}>author autho</h6>
+                    <span className="skelly" style={{marginLeft: '78px'}}>price p</span>
+                </li>
+              ))
+              :
               topSellers.map(seller => (
                 <li key={seller.id}>
                   <div className="author_list_pp">
@@ -50,7 +63,8 @@ const TopSellers = () => {
                     <span>{seller.price} ETH</span>
                   </div>
                 </li>
-              ))}
+              ))
+              }
             </ol>
           </div>
         </div>
