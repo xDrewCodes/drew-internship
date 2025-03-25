@@ -15,6 +15,8 @@ const Explore = () => {
         <section
           id="subheader"
           className="text-light"
+          data-aos='fade-in'
+          data-aos-duration='500'
           style={{ background: `url("${SubHeader}") top` }}
         >
           <div className="center-y relative text-center">

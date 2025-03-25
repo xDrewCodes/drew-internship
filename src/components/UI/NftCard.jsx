@@ -35,7 +35,10 @@ const NftCard = ({ card, colClass }) => {
             {
                 !card
                     ?
-                    <div className={colClass}>
+                    <div
+                        data-aos='fade-in'
+                        data-aos-duration='600'
+                        className={colClass}>
                         <div className="nft__item">
                             <div className="author_list_pp">
                                 <div>
@@ -73,11 +76,14 @@ const NftCard = ({ card, colClass }) => {
                         </div>
                     </div>
                     :
-                    <div className={colClass}>
+                    <div
+                        data-aos='fade-in'
+                        data-aos-duration='600'
+                        className={colClass}>
                         <div className="nft__item">
                             <div className="author_list_pp">
                                 <Link
-                                    to={ card.authorId ? `/author/${card.authorId}` : '#'}
+                                    to={card.authorId ? `/author/${card.authorId}` : '#'}
                                     data-bs-toggle="tooltip"
                                     data-bs-placement="top"
                                     title={`Creator: ${card.authorId}`}
