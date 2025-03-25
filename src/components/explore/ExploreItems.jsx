@@ -10,9 +10,12 @@ const ExploreItems = () => {
   const [expItems, setExpItems] = useState()
   const [itemsShown, setItemsShown] = useState(8)
 
-  async function getExploreItems() {
+  async function getExploreItems(filtered = false, filter) {
 
-    const url = 'https://us-central1-nft-cloud-functions.cloudfunctions.net/explore'
+    let url = 'https://us-central1-nft-cloud-functions.cloudfunctions.net/explore'
+
+    filtered && (url += `?filter=${filter}`)
+
     const response = await axios.get(url)
     setExpItems(response.data)
 
@@ -23,25 +26,19 @@ const ExploreItems = () => {
   }, [])
 
   function sortItems(sort) {
-
-    let sorted = [...expItems]
-
     switch (sort) {
       case 'price_low_to_high':
-        sorted.sort((a, b) => a.price - b.price)
+        getExploreItems(true, 'price_low_to_high')
         break
       case 'price_high_to_low':
-        sorted.sort((a, b) => b.price - a.price)
+        getExploreItems(true, 'price_high_to_low')
         break
       case 'likes_high_to_low':
-        sorted.sort((a, b) => b.likes - a.likes)
+        getExploreItems(true, 'likes_high_to_low')
         break
       default:
         break
     }
-
-    setExpItems(sorted)
-
   }
 
   return (
@@ -55,9 +52,9 @@ const ExploreItems = () => {
         </select>
       </div>
       {!expItems
-      ?
-      new Array(8).fill(0).map((_, index) => <NftCard card={null} key={index} colClass={'col-3'} />)
-      :
+        ?
+        new Array(8).fill(0).map((_, index) => <NftCard card={null} key={index} colClass={'col-3'} />)
+        :
         expItems.slice(0, itemsShown).map(expItem => {
           return (
             <NftCard card={expItem} colClass={'col-3'} key={expItem.id} />
