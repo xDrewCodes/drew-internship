@@ -29,73 +29,58 @@ const ItemDetails = () => {
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
         {
-          !nft ?
+          !!nft ?
             <section aria-label="section" className="mt90 sm-mt-0">
               <div className="container">
                 <div className="row">
                   <div className="col-md-6 text-center">
-                    <img
-                      src={nftImage}
-                      className="img-fluid img-rounded mb-sm-30 nft-image"
-                      alt=""
-                    />
+                    <div className="img-fluid img-rounded mb-sm-30 nft-image skelly"></div>
                   </div>
                   <div className="col-md-6">
                     <div className="item_info">
-                      <h2>Rainbow Style #194</h2>
+                      <h2 className="skelly">nft title nft title</h2>
 
                       <div className="item_info_counts">
-                        <div className="item_info_views">
-                          <i className="fa fa-eye"></i>
-                          100
+                        <div className="item_info_views skelly">
+                          <i className="fa fa-eye skelly"></i>
+                          views
                         </div>
-                        <div className="item_info_like">
-                          <i className="fa fa-heart"></i>
-                          74
+                        <div className="item_info_like skelly">
+                          <i className="fa fa-heart skelly"></i>
+                          likes
                         </div>
                       </div>
-                      <p>
+                      <p className="skelly">
                         doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
                         illo inventore veritatis et quasi architecto beatae vitae
                         dicta sunt explicabo.
                       </p>
                       <div className="d-flex flex-row">
                         <div className="mr40">
-                          <h6>Owner</h6>
+                          <h6 className="skelly">owner</h6>
                           <div className="item_author">
                             <div className="author_list_pp">
-                              <Link to="/author">
-                                <img className="lazy" src={AuthorImage} alt="" />
-                                <i className="fa fa-check"></i>
-                              </Link>
-                            </div>
-                            <div className="author_list_info">
-                              <Link to="/author">Monica Lucas</Link>
+                              <div className="skelly-pp skelly"></div>
                             </div>
                           </div>
+                          <div className="author_list_info skelly" style={{ marginLeft: '70px', height: '25px', marginBottom: '10px', marginTop: '20px' }}>owner</div>
                         </div>
-                        <div></div>
                       </div>
                       <div className="de_tab tab_simple">
                         <div className="de_tab_content">
-                          <h6>Creator</h6>
+                          <h6 className="skelly">creator</h6>
                           <div className="item_author">
                             <div className="author_list_pp">
-                              <Link to="/author">
-                                <img className="lazy" src={AuthorImage} alt="" />
-                                <i className="fa fa-check"></i>
-                              </Link>
-                            </div>
-                            <div className="author_list_info">
-                              <Link to="/author">Monica Lucas</Link>
+                              <div className="skelly-pp skelly"></div>
                             </div>
                           </div>
+                          <div className="author_list_info skelly" style={{ marginLeft: '70px', height: '25px', marginTop: '20px' }}>creator</div>
                         </div>
                         <div className="spacer-40"></div>
-                        <h6>Price</h6>
+                        <h6 className="skelly" style={{ margin: '16px 0' }}>Price</h6>
                         <div className="nft-item-price">
-                          <img src={EthImage} alt="" />
-                          <span>1.85</span>
+                          <span className="skelly" style={{ marginRight: '8px' }}>oo</span>
+                          <span className="skelly">price</span>
                         </div>
                       </div>
                     </div>
@@ -129,9 +114,7 @@ const ItemDetails = () => {
                         </div>
                       </div>
                       <p>
-                        Doloremque laudantium, totam rem aperiam, eaque ipsa quae ab
-                        illo inventore veritatis et quasi architecto beatae vitae
-                        dicta sunt explicabo.
+                        {nft.description}
                       </p>
                       <div className="d-flex flex-row">
                         <div className="mr40">
