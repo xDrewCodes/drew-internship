@@ -8,7 +8,6 @@ const Author = () => {
 
   const { id } = useParams()
   const [author, setAuthor] = useState()
-  const [collection, setCollection] = useState()
   const [followText, setFollowText] = useState('Follow')
 
   async function fetchAuthor() {
@@ -40,7 +39,7 @@ const Author = () => {
   useEffect(() => {
     window.scrollTo(0, 0)
     fetchAuthor()
-  }, [])
+  }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div id="wrapper">
