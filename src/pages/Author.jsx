@@ -38,6 +38,7 @@ const Author = () => {
   }
 
   useEffect(() => {
+    window.scrollTo(0, 0)
     fetchAuthor()
   }, [])
 
@@ -68,8 +69,8 @@ const Author = () => {
 
                           <i className="fa fa-check"></i>
                           <div className="profile_name">
-                            <div style={{ width: 'fit-content'}}>
-                              <h4 className="skelly" style={{margin: '3px 2px'}}>author name</h4>
+                            <div style={{ width: 'fit-content' }}>
+                              <h4 className="skelly" style={{ margin: '3px 2px' }}>author name</h4>
                               <span className="profile_username skelly" style={{ margin: '2px' }}>@authortag</span>
                               <span id="wallet" className="profile_wallet skelly" style={{ margin: '2px' }}>
                                 author blockchain address
