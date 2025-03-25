@@ -29,7 +29,7 @@ const ItemDetails = () => {
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
         {
-          !!nft ?
+          !nft ?
             <section aria-label="section" className="mt90 sm-mt-0">
               <div className="container">
                 <div className="row">
