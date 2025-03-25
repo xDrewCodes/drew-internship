@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import NftCard from "../UI/NftCard";
 
 const AuthorItems = ({ nfts }) => {

@@ -1,14 +1,11 @@
 
 import React, { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
 import axios from 'axios'
 import Slider from "react-slick"
 import NftCard from "../UI/NftCard"
 
 const NewItems = () => {
   const [newItems, setNewItems] = useState([])
-  const [currentTime, setCurrentTime] = useState(Date.now())
-  const [expireTimes, setExpireTimes] = useState({})
 
   const sliderSettings = {
     dots: false,
@@ -40,40 +37,12 @@ const NewItems = () => {
   }
 
   async function getItems() {
+    
     let url = 'https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems'
     let response = await axios.get(url)
     setNewItems(response.data)
 
-    let initialExpireTimes = {}
-    response.data.forEach(item => {
-      initialExpireTimes[item.id] = item.expiryDate
-    })
-    setExpireTimes(initialExpireTimes)
   }
-
-  function calcTime(expire) {
-    const timeLeft = expire - currentTime
-    let prettyTimeLeft = ''
-
-    if (timeLeft > 0) {
-      prettyTimeLeft += Math.floor(timeLeft / 1000 / 60 / 60) + 'h '
-      prettyTimeLeft += Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60)) + 'm '
-      prettyTimeLeft += Math.floor((timeLeft % (1000 * 60)) / 1000) + 's'
-    } else {
-      prettyTimeLeft = 'Expired'
-    }
-
-    return prettyTimeLeft
-  }
-
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentTime(Date.now())
-    }, 1000)
-
-    return () => clearInterval(timer)
-  }, [])
 
   useEffect(() => {
     getItems()
