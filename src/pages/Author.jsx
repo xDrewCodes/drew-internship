@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
@@ -10,6 +9,7 @@ const Author = () => {
   const { id } = useParams()
   const [author, setAuthor] = useState()
   const [collection, setCollection] = useState()
+  const [followText, setFollowText] = useState('Follow')
 
   async function fetchAuthor() {
 
@@ -22,6 +22,18 @@ const Author = () => {
     })
 
     setAuthor(response.data)
+
+  }
+
+  function follow() {
+
+    if (followText === 'Follow') {
+      setFollowText('Unfollow');
+      setAuthor({ ...author, followers: author.followers + 1 });
+    } else {
+      setFollowText('Follow');
+      setAuthor({ ...author, followers: author.followers - 1 });
+    }
 
   }
 
@@ -69,8 +81,8 @@ const Author = () => {
                   <div className="profile_follow de-flex">
                     <div className="de-flex-col">
                       <div className="profile_follower">{author && author.followers} followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
+                      <Link to="#" className="btn-main" onClick={follow}>
+                        {followText}
                       </Link>
                     </div>
                   </div>
