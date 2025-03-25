@@ -58,35 +58,67 @@ const Author = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={author && author.authorImage} alt="" />
+                {
 
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          {author && author.authorName}
-                          <span className="profile_username">@{author && author.tag}</span>
-                          <span id="wallet" className="profile_wallet">
-                            {author && author.address}
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
-                        </h4>
+                  !author ?
+                    <div className="d_profile de-flex">
+                      <div className="de-flex-col">
+                        <div className="profile_avatar">
+                          <div className="skelly-pp-big skelly"></div>
+
+                          <i className="fa fa-check"></i>
+                          <div className="profile_name">
+                            <div style={{ width: 'fit-content'}}>
+                              <h4 className="skelly" style={{margin: '3px 2px'}}>author name</h4>
+                              <span className="profile_username skelly" style={{ margin: '2px' }}>@authortag</span>
+                              <span id="wallet" className="profile_wallet skelly" style={{ margin: '2px' }}>
+                                author blockchain address
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="profile_follow de-flex">
+                        <div className="de-flex-col">
+                          <div className="profile_follower skelly">followers foll</div>
+                          <Link to="#" className="btn-main skelly">
+                            Follow
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">{author && author.followers} followers</div>
-                      <Link to="#" className="btn-main" onClick={follow}>
-                        {followText}
-                      </Link>
+                    :
+                    <div className="d_profile de-flex">
+                      <div className="de-flex-col">
+                        <div className="profile_avatar">
+                          <img src={author && author.authorImage} alt="" />
+
+                          <i className="fa fa-check"></i>
+                          <div className="profile_name">
+                            <h4>
+                              {author && author.authorName}
+                              <span className="profile_username">@{author && author.tag}</span>
+                              <span id="wallet" className="profile_wallet">
+                                {author && author.address}
+                              </span>
+                              <button id="btn_copy" title="Copy Text">
+                                Copy
+                              </button>
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="profile_follow de-flex">
+                        <div className="de-flex-col">
+                          <div className="profile_follower">{author && author.followers} followers</div>
+                          <Link to="#" className="btn-main" onClick={follow}>
+                            {followText}
+                          </Link>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+
+                }
               </div>
 
               <div className="col-md-12">

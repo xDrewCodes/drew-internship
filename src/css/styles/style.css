@@ -16759,6 +16759,13 @@ h4.skelly, h6.skelly {
   border-radius: 100%;
 }
 
+.skelly-pp-big {
+  background-color: white;
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+}
+
 .skeleton-box {
   display: inline-block;
   height: 1em;
