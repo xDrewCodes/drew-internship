@@ -1,10 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { Link, useParams } from "react-router-dom";
+import axios from "axios";
 
 const Author = () => {
+
+  const { id } = useParams()
+  const [author, setAuthor] = useState()
+  const [collection, setCollection] = useState()
+  const [followText, setFollowText] = useState('Follow')
+
+  async function fetchAuthor() {
+
+    let url = 'https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=' + id
+    const response = await axios.get(url)
+
+    response.data.nftCollection.map(nft => {
+      nft.authorImage = response.data.authorImage
+      return nft
+    })
+
+    setAuthor(response.data)
+
+  }
+
+  function follow() {
+
+    if (followText === 'Follow') {
+      setFollowText('Unfollow');
+      setAuthor({ ...author, followers: author.followers + 1 });
+    } else {
+      setFollowText('Follow');
+      setAuthor({ ...author, followers: author.followers - 1 });
+    }
+
+  }
+
+  useEffect(() => {
+    fetchAuthor()
+  }, [])
+
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
@@ -22,40 +58,74 @@ const Author = () => {
           <div className="container">
             <div className="row">
               <div className="col-md-12">
-                <div className="d_profile de-flex">
-                  <div className="de-flex-col">
-                    <div className="profile_avatar">
-                      <img src={AuthorImage} alt="" />
+                {
 
-                      <i className="fa fa-check"></i>
-                      <div className="profile_name">
-                        <h4>
-                          Monica Lucas
-                          <span className="profile_username">@monicaaaa</span>
-                          <span id="wallet" className="profile_wallet">
-                            UDHUHWudhwd78wdt7edb32uidbwyuidhg7wUHIFUHWewiqdj87dy7
-                          </span>
-                          <button id="btn_copy" title="Copy Text">
-                            Copy
-                          </button>
-                        </h4>
+                  !author ?
+                    <div className="d_profile de-flex">
+                      <div className="de-flex-col">
+                        <div className="profile_avatar">
+                          <div className="skelly-pp-big skelly"></div>
+
+                          <i className="fa fa-check"></i>
+                          <div className="profile_name">
+                            <div style={{ width: 'fit-content'}}>
+                              <h4 className="skelly" style={{margin: '3px 2px'}}>author name</h4>
+                              <span className="profile_username skelly" style={{ margin: '2px' }}>@authortag</span>
+                              <span id="wallet" className="profile_wallet skelly" style={{ margin: '2px' }}>
+                                author blockchain address
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="profile_follow de-flex">
+                        <div className="de-flex-col">
+                          <div className="profile_follower skelly">followers foll</div>
+                          <Link to="#" className="btn-main skelly">
+                            Follow
+                          </Link>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="profile_follow de-flex">
-                    <div className="de-flex-col">
-                      <div className="profile_follower">573 followers</div>
-                      <Link to="#" className="btn-main">
-                        Follow
-                      </Link>
+                    :
+                    <div className="d_profile de-flex">
+                      <div className="de-flex-col">
+                        <div className="profile_avatar">
+                          <img src={author && author.authorImage} alt="" />
+
+                          <i className="fa fa-check"></i>
+                          <div className="profile_name">
+                            <h4>
+                              {author && author.authorName}
+                              <span className="profile_username">@{author && author.tag}</span>
+                              <span id="wallet" className="profile_wallet">
+                                {author && author.address}
+                              </span>
+                              <button id="btn_copy" title="Copy Text">
+                                Copy
+                              </button>
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="profile_follow de-flex">
+                        <div className="de-flex-col">
+                          <div className="profile_follower">{author && author.followers} followers</div>
+                          <Link to="#" className="btn-main" onClick={follow}>
+                            {followText}
+                          </Link>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+
+                }
               </div>
 
               <div className="col-md-12">
                 <div className="de_tab tab_simple">
-                  <AuthorItems />
+
+                  {author &&
+                    <AuthorItems nfts={author.nftCollection} />}
                 </div>
               </div>
             </div>
